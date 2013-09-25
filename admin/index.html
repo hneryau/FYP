@@ -1,0 +1,88 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION['loggedin']) == 'YES'){
+?>
+	
+<html>
+<head>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+	<meta charset="utf-8">
+	<title>Administrator Home Page</title>
+	<script>
+		function startTime()
+		{
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			// add a zero in front of numbers<10
+			m=checkTime(m);
+			s=checkTime(s);
+			document.getElementById('clock').innerHTML=h+":"+m+":"+s;
+			t=setTimeout(function(){startTime()},500);
+		}
+
+		function checkTime(i)
+		{
+			if (i<10)
+			  {
+			  i="0" + i;
+			  }
+			return i;
+		}
+	</script>
+</head>
+<body onload="startTime()">
+	<div class="navbar navbar-inverse" style="position: static;">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="index.html">Administrator Menu</a>
+				<div class="nav-collapse collapse navbar-inverse-collapse">
+					<ul class="nav">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="browseAccount.html">Manage User</a></li>
+						<li><a href="browseReport.html">Manage Report</a></li>
+						<li><a href="manageNews.html">Manage Announcement</a></li>
+						<li><a href="licenseGen.html">License Generator</a></li>
+						<li><a href="viewLicense.html">View Licenses</a></li>                     
+					</ul>
+					<ul class="nav pull-right">                 
+						<li><a href="../logout.php">Logout</a></li>
+					</ul>
+				</div><!-- /.nav-collapse -->
+			</div>
+		</div><!-- /navbar-inner -->
+	</div>
+	<div class="container">		
+		<script language="javascript"> 
+
+			today = new Date(); 
+			document.write("<BR><h3>Today is: ", today.getDate(),"/",today.getMonth()+1,"/",today.getFullYear());
+			document.write("<BR>The time now is:<div id='clock'></div>"); 
+
+		</script> 	
+	</div>
+</body>
+
+</html>
+<!-- Cixx6.Temporary.Stats -->
+<script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
+<a href="http://www.histats.com" target="_blank" title="counter easy hit" ><script  type="text/javascript" >
+try {Histats.start(1,1653767,4,0,0,0,"");
+Histats.track_hits();} catch(err){};
+</script></a>
+<noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?1653767&101" alt="counter easy hit" border="0"></a></noscript>
+<!-- Cixx6 Temporary..Stats -->
+
+
+<?php } else {
+	echo 'You do not have permission to view this page. Please <a href="/index.html">Login</a> first.';
+}
+?>

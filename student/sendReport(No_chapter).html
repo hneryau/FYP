@@ -1,0 +1,197 @@
+<?php
+	// session_start();
+	require_once('conn/conn.php');
+	$login_id = $_SESSION['login_id'];
+	$sql = "SELECT book_id, bookName FROM BOOK";
+	$result  = mysql_query($sql, $conn);
+	// $result1 = mysql_fetch_row($result);
+	// $bid = $result1[0];
+	// $bname = $result1[1];
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">
+	<script>
+	function check_submit(){
+		var file=document.getElementById("file");
+		var content=document.getElementsByTagName('textarea')[0];
+		var bkName=document.getElementById("bkName");
+		var qno=document.getElementById("qno");
+		var type=document.getElementById("type");
+		if (type.value=="question") {
+			if (bkName.value=="") {
+				alert('Please select a book!');
+				return false;
+			}
+			else if (qno.value=="") {
+				alert('Please select a question!');
+				return false;
+			}
+
+		}
+		if(content.value==""){
+			alert('Please describe the situation!');
+			return false;
+		}
+		else if(file.value=="" || file.value==null){			
+			alert('Please select a snapshot!');		
+			return false;
+		}
+		else  if(file.files.item(0).size>=10485760){
+	        alert("File size is limited to 10MB ");
+	        return false;
+	    }	 
+	}
+
+	function check_file(){		
+        str=document.getElementById('file').value.toUpperCase();
+        fname=document.getElementById('upfile');
+        suffix=".JPG";
+        suffix2=".JPEG";
+		suffix3=".PNG";
+		suffix4=".GIF";
+        if(!(str.indexOf(suffix, str.length - suffix.length) !== -1||
+             str.indexOf(suffix2, str.length - suffix2.length) !== -1||
+			 str.indexOf(suffix3, str.length - suffix3.length) !== -1||
+			 str.indexOf(suffix4, str.length - suffix4.length) !== -1)){
+        alert('File type not allowed,\nAllowed file: *.jpg,*.jpeg,*.png,*.gif');
+            document.getElementById('file').value='';
+            fname.value=document.getElementById('file').value;
+        }
+        else{
+        	var pieces = str.split('\\');
+        	fname.value= pieces[pieces.length-1];
+        }
+	}
+
+	function showNumber(bid){
+
+		if (bid=="")
+		{
+			document.getElementById("qno").innerHTML="";
+  			return;
+		}
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		if (bid != 0)
+		{
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					document.getElementById("qno").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET","getNumber.php?bid="+bid,true);
+			xmlhttp.send();
+		}
+		// else if (bid==0)
+		// {
+		// 	xmlhttp.onreadystatechange=function()
+		// 	{
+		// 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		// 		{
+		// 			document.getElementById("qno").innerHTML=xmlhttp.responseText;
+		// 		}
+		// 	}
+		// 	xmlhttp.open("GET","getNumber.php?bid=&cid="+cid,true);
+		// 	xmlhttp.send();
+		// }		
+	}
+
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$("select#type").change(function(){
+				if($("select#type").val()!="question"){				
+					$("tr.warning").hide();
+				}else{
+					$("tr.warning").show();
+				}
+			});
+		});
+
+	</script>
+
+	<style type="text/css">
+		.file {position:absolute;opacity:0;filter:alpha(opacity=0);}
+	</style>
+	<title>Send Report - Student</title>
+	<h1 align="center">Send Report</h1>
+	</style>
+</head>
+<body>	
+	<form action = "sendReport.php" method = "post" name = "sendReport" enctype="multipart/form-data" onsubmit="return check_submit();">
+		<div>
+        	<table class="table table-hover">
+        		<tr class="success">
+					<td><h4>Type of problem:</h4></td>
+					<td><select id="type" name ="type" size="1" onchange="check_select()">
+							<option value = "account">Account</option>
+							<option value = "question">Question</option>
+							<option value = "website">Website</option>
+							<option value = "other">Others</option>
+						</select>
+					</td>
+				</tr>
+				<tr class="warning" style="display:none;">
+					<td>
+						<!-- Get book name					 -->
+						<h4>Book Name:</td><td>
+							<select id="bkName" name="bkName" size="1" onchange="showNumber(this.value)">
+							<option value="">Select a Book</option>
+							<?php while ($result1 = mysql_fetch_row($result)) {
+								if ($result1[1]!="")
+								echo "<option value ='$result1[0]'>$result1[1]</option>";
+							}
+
+							?></select>
+					</td>
+				</tr>
+				
+				<!-- <tr class="warning" style="display:none;"> -->
+					<!-- Get chapter number					 -->
+<!-- 					<td><h4>Chapter No:</td>
+					<td><select id="cno" name="cno" size="1" onchange="showNumber(0, this.value)"></select></td>
+				</tr> -->
+				
+				<tr class="warning" style="display:none;">
+					<!-- Get question number -->
+					<td><h4>Question No:</td>
+					<td><select id="qno" name="qno" size="1"></select></td>
+				</tr>
+				<tr class="info">
+					<td><h4>Description of problem:</h4></td>				
+					<td><textarea style="resize: none;" rows="4" cols="30" maxlength="500" name="content" id="content"></textarea>
+					</td>
+				</tr>
+				<tr class="error">
+					<td><h4>Any screen snapshot(.jpg/.png/.gif)<br>Maximum size:20MB</h4></td>
+					<td><input type="file" name="file" style="display:none;" size="20" id="file" accept=".jpg,.jpeg,.png,.gif" onchange="check_file()">
+						<input type="text" id="upfile" name="upfile" size="20" readonly>
+						<input type="button" class="btn btn-inverse" value="Browse..." onclick="this.form.file.click();">
+					</td>
+				</tr>
+				<td>
+					<td>
+						<button type="submit" class="btn btn-success">Submit</button>
+						<button type="reset" id="reset" class="btn btn-warning">Reset</button>
+					</td>
+				</td>
+			</table>
+		</div>
+	</form>
+</body>
+</html>

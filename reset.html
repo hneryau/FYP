@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>E-Book System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/style3.css" />
+        <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" href="css/select.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>E-Book <span>System</span></h1>
+            </header>
+            <nav class="codrops-demos">
+                <span><strong>More functions:</strong></span>
+                <a href="index.html">Login and Register</a>
+                <a href="reset.html" class="current-demo">Reset Password</a>
+                <a href="extend.html">Extend License</a>
+            </nav>
+            <section>
+                <div id="container_demo" >
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  method="post" action="reset.php" autocomplete="on">
+                                <h1>Password Reset Panel</h1>
+                                <p>
+                                    <label for="login_id" class="uname" data-icon="u">Login ID:</label>
+                                    <input id="login_id" name="login_id" required="required" type="text" placeholder="Type your Login ID here..." />
+                                </p>
+                                <p>
+                                    <label for="email" class="youmail" data-icon="e" >E-mail</label>
+                                    <input id="email" name="email" required="required" type="email" placeholder="Type your Email here..."/>
+                                </p>
+                                <p>
+                                    <label for="question" class="uname">Security Question:</label>
+                                <div class="styled-select">
+                                    <select id="question" name="question">
+                                        <option value="nickname">What was your childhood nickname?</option>
+                                        <option value="prischool">What was the name of your primary school?</option>
+                                        <option value="creditcard">What are the last 5 digits of your credit card?</option>
+                                        <option value="retire">In what city or country do you want to retire?</option>
+                                        <option value="color">What is your favorite color?</option>
+                                    </select>
+                                </div>
+                                </p>
+                                <p>
+                                    <label for="answer" class="uname" data-icon="p">Answer:</label>
+                                    <input id="answer" name="answer" required="required" type="text" placeholder="Type your Answer here..."/>
+                                </p>
+                                <p>
+                                    <label for="password" class="youpasswd" data-icon="p">New Password:</label>
+                                    <input id="password" name="password" required="required" type="password"  onchange="form.password2.pattern = this.value;" placeholder="Type your Password here..."/>
+                                </p>
+                                <p>
+                                    <label for="password2" class="youpasswd" data-icon="p">New Password confirm:</label>
+                                    <input id="password2" name="password2" required="required" type="password" placeholder="Type your Password agiain..."/>
+                                </p>
+                                <p class="signin button">
+                                    <input type="submit" value="Submit"/>
+                                </p>
+                                <p class="change_link">
+                                </p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <footer>
+            </footer>
+        </div>
+    </body>
+</html>

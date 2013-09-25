@@ -1,0 +1,31 @@
+.drag {
+	margin: auto;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	text-align: center;
+	font-size: 10pt;
+	width: 70px;
+	height: 20px;
+	line-height: 20px;
+	border-width: 2px;
+	border-style: solid;
+	background-color: white;
+	/* round corners */
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+}
+
+.row {
+	width: 20px;
+	margin: 2px;
+	border-color: SteelBlue;
+	background-color: SteelBlue;
+	/* round corners */
+	border-radius: 14px; /* Opera, Chrome */
+	-moz-border-radius: 14px; /* FF */
+}
+
+/* row handler TD background color */
+.rowhandler {
+	background-color: #76ACDA;
+}

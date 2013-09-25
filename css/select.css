@@ -1,0 +1,14 @@
+.styled-select select {
+   background: transparent;
+   width: 444px;
+   padding: 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+}
+
+.styled-select {
+   width: 444px;
+   height: 34px;
+   background: url(new_arrow.jpg) no-repeat right #ddd;
+}
