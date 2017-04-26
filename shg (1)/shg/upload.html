@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
+</style>
+</head>
+
+<html>
+    <head>
+        <title>Upload yr game</title>
+    </head>
+    
+    <body>
+        <h2>Upload your games!</h2><hr/>
+        <p>
+        <b>{{ error }}</b>
+        <form action="/up" enctype="multipart/form-data" method="post" >
+            <div><h4>Game name:<input name="gname" rows="1" cols="40"></h4></div>
+            <div><h4>Image:<input type="file" name="image" rows="1" cols="40"></h4></div>
+            <div><h4>Type:<select name="sel" >
+                <option value="Action">Action</option>
+                <option value="Adventurn">Adventurn</option>
+                <option value="Leisure">Leisure</option>
+            </select></h4></div>
+            <div><h4><textarea name="comment" rows="3" cols="60">Comment:</textarea></h4></div>
+            <div><input type="Submit" value="Upload">
+            
+        </form>
+        </p>
+        <div></div>
+         
+    </body>
+</html>

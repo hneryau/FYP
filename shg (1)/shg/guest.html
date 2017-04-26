@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+
+{% autoescape true %}
+<html>
+    <head>
+        <title>Guest Book 2</title>
+    </head>
+    
+    <body>
+        <h2>The  wrote</h2><hr/>
+        <h3></h3>
+        <p>
+        <form action="/sign" method="post">
+            <div><textarea name="content" rows="3" cols="60" autofocus ></textarea></div>
+            <div><input type="Submit" value="Sign Guestbook"></div>
+        </form>
+        </p>
+    
+    </body>
+</html>
+{% endautoescape %}

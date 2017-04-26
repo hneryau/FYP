@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
+</style>
+</head>
+
+<html>
+    <head>
+        <title>User reg</title>
+    </head>
+    
+    <body>
+        <h2>Welcome to user registration!</h2><hr/>
+        <p>
+        <b>{{ error }}</b>
+        <form action="/reg" method="post">
+            <div><h4>Username:<input name="username" rows="1" cols="40"></h4></div>
+            <div><h4>Password:<input name="password" rows="1" cols="40" type="password"></h4></div>
+            <div><h4>E-mail:<input name="email" rows="1" cols="40"></h4></div>
+            <div><h4>Phone:<input name="phone" rows="1" cols="40"></h4></div>
+    
+            <div><input type="Submit" value="Registration"></div><div><input type="Submit" value="Home"></div>
+        </form>
+        </p>
+        
+    </body>
+</html>
